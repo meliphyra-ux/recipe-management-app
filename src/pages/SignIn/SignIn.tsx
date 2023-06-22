@@ -1,8 +1,10 @@
 import { Box } from '@chakra-ui/react';
+
 import styled from '@emotion/styled';
-import SignInWithGoogle from '../components/authentication/sign-in-with-google/SignInWithGoogle';
-import SignInWithEmail from '../components/authentication/sign-in-with-email/SignInWithEmail';
-import SignUpWithEmail from '../components/authentication/sign-up-with-email/SignUpWithEmail';
+
+import SignInWithGoogle from './auth-forms/SignInWithGoogle';
+import SignInWithEmail from './auth-forms/SignInWithEmail';
+import SignUpWithEmail from './auth-forms/SignUpWithEmail';
 
 const StyledSignInContainer = styled(Box)`
   display: grid;
@@ -27,7 +29,7 @@ const StyledSignInContainer = styled(Box)`
 
     gap: 1.5rem;
 
-    border: 1px solid white;
+    border: 1px solid var(--chakra-colors-whiteAlpha-900);
     border-radius: 0.25rem;
   }
   & > form:first-of-type {

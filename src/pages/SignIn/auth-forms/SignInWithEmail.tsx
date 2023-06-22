@@ -1,6 +1,6 @@
 import { Box, Button, Heading, useToast } from '@chakra-ui/react';
 import { SyntheticEvent, useReducer } from 'react';
-import AuthInput from '../../auth-input/AuthInput';
+import AuthInput from '../../../components/ui/AuthInput';
 import { signInUserWithEmail } from '../../../lib/firebase';
 import { useNavigate } from 'react-router-dom';
 

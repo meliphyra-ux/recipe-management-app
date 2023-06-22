@@ -1,8 +1,9 @@
-import { Box } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import useAuthState from '../lib/hooks/useAuthState';
 import { useNavigate } from 'react-router-dom';
-import SignOutButton from '../components/buttons/sign-out-button/SignOutButton';
-import { useEffect } from 'react';
+
+import { Box } from '@chakra-ui/react';
+import SignOutButton from '../components/ui/buttons/SignOutButton';
 
 const User = () => {
   const [user] = useAuthState();

@@ -8,7 +8,17 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
-import { doc, getDoc, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  query,
+  serverTimestamp,
+  setDoc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA4vYtQF1CalTnkKXRdTGi-ysiNPYlyPBs',
@@ -67,7 +77,7 @@ export async function signUpUserWithEmail({
   displayName,
   email,
   password,
-}: UserCredetials & { displayName: string }) : Promise<boolean> {
+}: UserCredetials & { displayName: string }): Promise<boolean> {
   try {
     const { user } = await createUserWithEmailAndPassword(
       auth,
@@ -75,9 +85,9 @@ export async function signUpUserWithEmail({
       password
     );
     if (user) {
-      const docSnap = await createUserDocument(user, displayName)
-      console.log(docSnap)
-      return true
+      const docSnap = await createUserDocument(user, displayName);
+      console.log(docSnap);
+      return true;
     }
     throw new Error('Error with sign in');
   } catch (error) {
@@ -98,26 +108,31 @@ export async function signOutUser(): Promise<boolean> {
   }
 }
 
-
 export async function createUserDocument(user: User, displayName: string) {
-  try{  
-    const docRef = doc(db, 'users', user.uid)
+  try {
+    const docRef = doc(db, 'users', user.uid);
     const docSnap = await getDoc(docRef);
-    
-    if(!docSnap.exists()) {
-      console.log('triggered')
-     await setDoc(docRef, {
+
+    if (!docSnap.exists()) {
+      console.log('triggered');
+      await setDoc(docRef, {
         displayName,
         email: user.email,
         created_at: serverTimestamp(),
-      })
-      return await getDoc(docRef)
+      });
+      return await getDoc(docRef);
     }
-    
-  }
-  catch(error){
+  } catch (error) {
     const { message } = error as Error;
     console.warn(message);
     return false;
   }
+}
+
+export async function getRecipes() {
+  const pageSize = 20;
+  const q = query(collection(db, 'recipes'), limit(pageSize));
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot
 }

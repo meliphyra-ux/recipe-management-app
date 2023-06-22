@@ -4,7 +4,7 @@ import { SyntheticEvent, useReducer } from 'react';
 import { signUpUserWithEmail } from '../../../lib/firebase';
 
 import { Box, Button, Heading, useToast } from '@chakra-ui/react';
-import AuthInput from '../../auth-input/AuthInput';
+import AuthInput from '../../../components/ui/AuthInput';
 
 type SignUpStateProps = {
   name: string;

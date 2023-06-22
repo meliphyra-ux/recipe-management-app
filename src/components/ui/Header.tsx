@@ -5,8 +5,8 @@ import { BiUser } from 'react-icons/bi';
 
 import { Link } from 'react-router-dom';
 
-import NavigationButton from '../buttons/navigation-button/NavigationButton';
-import useAuthState from '../../lib/hooks/useAuthState';
+import NavigationButton from './buttons/NavigationButton';
+import useAuthState from '~/lib/hooks/useAuthState';
 
 const Header = () => {
   const [user] = useAuthState()

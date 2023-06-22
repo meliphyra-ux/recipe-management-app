@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
-import Header from '../header/Header';
+import Header from '../ui/Header';
 import styled from '@emotion/styled';
 
 const StyledOutletBox = styled(Box)`
